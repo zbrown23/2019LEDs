@@ -1,7 +1,0 @@
-{
-    "port": "/dev/cu.usbserial-A90835IA",
-    "board": "arduino:avr:nano",
-    "configuration": "cpu=atmega328",
-    "programmer": "AVRISP mkII",
-    "sketch": "LED_control/LED_control.ino"
-}
