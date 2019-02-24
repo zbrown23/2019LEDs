@@ -38,7 +38,9 @@ void setup() {
 }
 
 void loop() {
-     elevatorChaseRed();
+     colorWipeRed();
+     colorWipeBlack();
+     colorWipeCoral();
     }
 
 
