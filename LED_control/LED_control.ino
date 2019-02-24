@@ -15,7 +15,7 @@
 //Changeable variables
 #define DATA_PIN 3
 #define BRIGHTNESS 100
-#define FRAMES_PER_SECOND  60
+#define FRAMES_PER_SECOND  30
 int fadeAmount = 5;
 int wait = 50;
 const int leftBottom = 37;
@@ -40,21 +40,34 @@ void setup() {
 
 void loop() {
      
-     CoralChaseBackForth();
-     FastLED.delay(1000/FRAMES_PER_SECOND);
+     coralRain(0,30,true,4);
+     //FastLED.delay(1000/FRAMES_PER_SECOND);
 }
 
+void coralRain(int startIndex, int endIndex, bool reverse, int rainFrequency) {
+  if(reverse) {
+    for(int i = floor((endIndex - 1)/rainFrequency); i >=startIndex; i--) {
+      for(int b = 0; b < rainFrequency; b++) {
+        leds[i + ((endIndex-startIndex)/rainFrequency)*b].setRGB( 250, 75, 90);
+          fadeToBlackBy(leds, endIndex - startIndex, 300);
+      }
+      FastLED.show();
+      FastLED.delay(wait);
+    }
+  }
+  else {
+  }
+}
 
 void CoralChaseBackForth() {
-        
         for(int dot = 0; dot < STRAND_LENGTH; dot++) { 
-            leds[dot].setRGB( 200, 75, 90);
+            leds[dot].setRGB( 250, 75, 90);
             fadeToBlackBy(leds, STRAND_LENGTH, 300);
             FastLED.show();
             FastLED.delay(wait);
   }
         for(int dot = STRAND_LENGTH - 1; dot >= 0; dot--) {
-            leds[dot+0].setRGB( 200, 75, 90);
+            leds[dot+0].setRGB( 250, 75, 90);
             fadeToBlackBy(leds, STRAND_LENGTH, 300);
             FastLED.show();
             FastLED.delay(wait);
