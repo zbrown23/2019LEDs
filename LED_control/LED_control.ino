@@ -26,7 +26,7 @@ const int rightElevator = 0;
 
 //definitions so the code knows what it's doing
 //#define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
-#define STRAND_LENGTH 37
+#define STRAND_LENGTH 200
 int brightness = BRIGHTNESS;
 CRGB leds[STRAND_LENGTH];
 
@@ -40,11 +40,12 @@ void setup() {
 
 void loop() {
      
-     coralRain(0,30,true,4);
+     coralRain(20,70,false,3);
      //FastLED.delay(1000/FRAMES_PER_SECOND);
 }
 
 void coralRain(int startIndex, int endIndex, bool reverse, int rainFrequency) {
+  int totalLEDs = endIndex-startIndex;
   if(reverse) {
     for(int i = floor((endIndex - 1)/rainFrequency); i >=startIndex; i--) {
       for(int b = 0; b < rainFrequency; b++) {
@@ -55,8 +56,42 @@ void coralRain(int startIndex, int endIndex, bool reverse, int rainFrequency) {
       FastLED.delay(wait);
     }
   }
+  //rainFrequency = 4
+  //{0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9}
+  //{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0}
+  //{0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0}
+  //{0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0}
+  //{0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0}
+  //{0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}
+  //{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0}
   else {
+    //for(int i = 0; i <= 5; i++) (because 5 steps(rows))
+    //(totalLEDs/rainFrequency)-1
+    int previousPixelBrightness[rainFrequency];
+    for(int i = 0; i < rainFrequency; i++) { //i = offset each frame
+
+      //for(int b = 0; b < 4; b++) (number of offsets)
+      for(int b = 0; b < totalLEDs/rainFrequency; b++) {
+        //4 + 3*4
+        leds[(i + b*rainFrequency)+startIndex].setRGB( 250, 75, 90);
+        leds[(i + b*rainFrequency)+startIndex-1].fadeToBlackBy(196); //(scale brightness down by 196/256)
+
+      }
+      FastLED.show();
+      FastLED.delay(300);
+    }
   }
+/*
+    for(int i = 0; i < startIndex; i++) {
+      for(int b = 0; b < rainFrequency; b++) {
+        leds[i + ((endIndex-startIndex)/rainFrequency)*b].setRGB( 250, 75, 90);
+          fadeToBlackBy(leds, endIndex - startIndex, 300);
+      }
+      FastLED.show();
+      FastLED.delay(wait);
+    }
+  }
+  */
 }
 
 void CoralChaseBackForth() {
