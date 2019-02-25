@@ -20,13 +20,13 @@ int fadeAmount = 5;
 int wait = 50;
 const int leftBottom = 37;
 const int rightBottom = 37;
-const int frontBottom = 0;
-const int leftElevator = 0;
-const int rightElevator = 0;
+const int frontBottom = 40;
+const int leftElevator = 48;
+const int rightElevator = 48;
 
 //definitions so the code knows what it's doing
-//#define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
-#define STRAND_LENGTH 200
+#define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
+//#define STRAND_LENGTH 30
 int brightness = BRIGHTNESS;
 CRGB leds[STRAND_LENGTH];
 
@@ -47,6 +47,8 @@ void loop() {
         FastLED.delay(wait);
      }
      //FastLED.delay(1000/FRAMES_PER_SECOND);
+     colorWipeRed();
+     colorWipeBlack();
 }
 
 void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFrequency) {
