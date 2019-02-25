@@ -40,8 +40,10 @@ void setup() {
 
 void loop() {
      //CoralChaseBackForth();
-     coralRain(36,66,false,6);
+     //coralRain(36,96,false,6);
      //FastLED.delay(1000/FRAMES_PER_SECOND);
+     colorWipeRed();
+     colorWipeBlack();
 }
 
 void coralRain(int startIndex, int endIndex, bool reverse, int rainFrequency) {
