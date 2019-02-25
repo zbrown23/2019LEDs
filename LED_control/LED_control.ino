@@ -34,6 +34,7 @@ void setup() {
   //setup code
   Wire.begin(8);
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, STRAND_LENGTH).setCorrection(TypicalLEDStrip);
+  FastLED.setMaxPowerInVoltsAndMilliamps(5,5000);
   FastLED.setBrightness(BRIGHTNESS);
   FastLED.show();
 }
