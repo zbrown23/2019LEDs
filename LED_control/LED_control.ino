@@ -1,11 +1,7 @@
 /*
- * LED Animations
- * 1. DARC SIDE Colors
- * 2. Chase up Elevator
- * 3. Pulsing Red
- * 4. Pulsing Blue
- * 5. Solid Red
- * 6. Solid Blue
+ * LED Animations (0-255, not that we'll need 255 Animations)
+ * I'm going to organize the animations on the Google Sheet in the electrical folder,
+ * but we'll just categorize based on what part of the robot it's lighting up. I'll add the .csv file to the GitHub once i'm done
  */
 
 //includes
@@ -39,6 +35,7 @@ void setup() {
   FastLED.show();
 }
 
+//just screw with stuff if you want lol
 void loop() {
      int rainFrequency = 8;
      for(int i = 0; i < rainFrequency; i++) {
