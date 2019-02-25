@@ -39,23 +39,36 @@ void setup() {
 }
 
 void loop() {
-     
-     coralRain(20,70,false,3);
+     int rainFrequency = 8;
+     for(int i = 0; i < rainFrequency; i++) {
+        coralRain(i,0,30,false,rainFrequency);
+        coralRain(i,31,50,true,rainFrequency);
+        FastLED.show();
+        FastLED.delay(wait);
+     }
      //FastLED.delay(1000/FRAMES_PER_SECOND);
 }
 
-void coralRain(int startIndex, int endIndex, bool reverse, int rainFrequency) {
+void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFrequency) {
   int totalLEDs = endIndex-startIndex;
   if(reverse) {
-    for(int i = floor((endIndex - 1)/rainFrequency); i >=startIndex; i--) {
-      for(int b = 0; b < rainFrequency; b++) {
-        leds[i + ((endIndex-startIndex)/rainFrequency)*b].setRGB( 250, 75, 90);
-          fadeToBlackBy(leds, endIndex - startIndex, 300);
+    //for(int i = 0; i <= 5; i++) (because 5 steps(rows))
+    //(totalLEDs/rainFrequency)-1
+    //for(int i = rainFrequency - 1; i >= 0; i--) { //i = offset each frame
+
+      //for(int b = 0; b < 4; b++) (number of offsets)
+      for(int b = 0; b < totalLEDs/rainFrequency; b++) {
+        //4 + 3*4
+        leds[((rainFrequency-i-1) + b*rainFrequency)+startIndex].setRGB( 250, 75, 90);
+        for(int c = 0; c < 4; c++) {
+          leds[((rainFrequency-i-1+c) + b*rainFrequency)+startIndex+1].fadeToBlackBy(50);
+        }
+         //(scale brightness down by 196/256)
       }
-      FastLED.show();
-      FastLED.delay(wait);
+      // FastLED.show();
+      // FastLED.delay(wait);
     }
-  }
+  //}
   //rainFrequency = 4
   //{0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9}
   //{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0}
@@ -67,31 +80,20 @@ void coralRain(int startIndex, int endIndex, bool reverse, int rainFrequency) {
   else {
     //for(int i = 0; i <= 5; i++) (because 5 steps(rows))
     //(totalLEDs/rainFrequency)-1
-    int previousPixelBrightness[rainFrequency];
-    for(int i = 0; i < rainFrequency; i++) { //i = offset each frame
+    //for(int i = 0; i < rainFrequency; i++) { //i = offset each frame
 
       //for(int b = 0; b < 4; b++) (number of offsets)
       for(int b = 0; b < totalLEDs/rainFrequency; b++) {
         //4 + 3*4
         leds[(i + b*rainFrequency)+startIndex].setRGB( 250, 75, 90);
-        leds[(i + b*rainFrequency)+startIndex-1].fadeToBlackBy(196); //(scale brightness down by 196/256)
-
+        if((i + b*rainFrequency)+startIndex > 0) {
+          leds[(i + b*rainFrequency)+startIndex-1].nscale8_video(192); //(scale brightness down by 196/256)
+        }
       }
-      FastLED.show();
-      FastLED.delay(300);
+      // FastLED.show();
+      // FastLED.delay(wait);
     }
-  }
-/*
-    for(int i = 0; i < startIndex; i++) {
-      for(int b = 0; b < rainFrequency; b++) {
-        leds[i + ((endIndex-startIndex)/rainFrequency)*b].setRGB( 250, 75, 90);
-          fadeToBlackBy(leds, endIndex - startIndex, 300);
-      }
-      FastLED.show();
-      FastLED.delay(wait);
-    }
-  }
-  */
+  //}
 }
 
 void CoralChaseBackForth() {
