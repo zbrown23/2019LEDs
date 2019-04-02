@@ -34,7 +34,8 @@ void setup() {
 
 //just screw with stuff if you want lol
 void loop() {
-     int rainFrequency = 8;
+     if(animation == 1){
+      int rainFrequency = 8;
      for(int i = 0; i < rainFrequency; i++) {
         coralRain(i,0,30,false,rainFrequency);
         coralRain(i,31,50,true,rainFrequency);
@@ -44,6 +45,7 @@ void loop() {
      //FastLED.delay(1000/FRAMES_PER_SECOND);
      colorWipeRed();
      colorWipeBlack();
+     }
 }
 
 void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFrequency) {
