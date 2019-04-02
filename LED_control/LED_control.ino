@@ -116,7 +116,7 @@ void colorWipeRed() {
 }
 
 void colorWipeBlue() {
-  for(int i=0, j=0; i<STRAND_LENGTH; i++) {
+  for(int i=0; i<STRAND_LENGTH; i++) {
     leds[i].setRGB(0, 0, 128);
     FastLED.show();
     FastLED.delay(wait);
@@ -140,7 +140,7 @@ void colorWipeBlack() {
 }
 
 void elevatorChaseRed() {
-  for(int dot = leftBottom+rightBottom+frontBottom, dot < leftBottom+rightBottom+frontBottom+elevatorLeft; dot++) { 
+  for(int dot = leftBottom+rightBottom+frontBottom; dot < leftBottom+rightBottom+frontBottom+leftElevator; dot++) { 
             leds[dot].setRGB(128, 0, 0);
             leds[dot+leftElevator].setRGB(128,0,0);
             FastLED.show();
