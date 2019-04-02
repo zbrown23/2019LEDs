@@ -8,6 +8,7 @@
 #define FRAMES_PER_SECOND  30
 int fadeAmount = 5;
 int wait = 50;
+int animation = 0;
 const int leftBottom = 37;
 const int rightBottom = 37;
 const int frontBottom = 40;
@@ -23,6 +24,8 @@ CRGB leds[STRAND_LENGTH];
 void setup() {
   //setup code
   Wire.begin(8);
+  Wire.onReceive(recieveEvent);
+  Serial.begin(9600);
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, STRAND_LENGTH).setCorrection(TypicalLEDStrip);
   FastLED.setMaxPowerInVoltsAndMilliamps(5,5000);
   FastLED.setBrightness(BRIGHTNESS);
@@ -149,3 +152,7 @@ void elevatorChaseRed() {
 void pulseRed() {
 
  }
+
+void recieveEvent(int recieveByte){
+  animation = Wire.read();
+}
