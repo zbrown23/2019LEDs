@@ -27,7 +27,7 @@ void setup() {
   Wire.onReceive(recieveEvent);
   Serial.begin(9600);
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, STRAND_LENGTH).setCorrection(TypicalLEDStrip);
-  FastLED.setMaxPowerInVoltsAndMilliamps(5,5000);
+  FastLED.setMaxPowerInVoltsAndMilliamps(5,6000); //not closed loop, but uses rgb values to calculate current, a little overshoot won't kill anyone
   FastLED.setBrightness(BRIGHTNESS);
   FastLED.show();
 }
@@ -155,4 +155,5 @@ void pulseRed() {
 
 void recieveEvent(int recieveByte){
   animation = Wire.read();
+  Serial.println(animation);
 }
