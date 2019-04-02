@@ -17,7 +17,7 @@ const int rightElevator = 48;
 
 //definitions so the code knows what it's doing
 #define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
-//#define STRAND_LENGTH 30
+//#define STRAND_LENGTH 30  //test strand length
 int brightness = BRIGHTNESS;
 CRGB leds[STRAND_LENGTH];
 
