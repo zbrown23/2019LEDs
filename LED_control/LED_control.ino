@@ -42,9 +42,6 @@ void loop() {
         FastLED.show();
         FastLED.delay(wait);
      }
-     //FastLED.delay(1000/FRAMES_PER_SECOND);
-     colorWipeRed();
-     colorWipeBlack();
      }
 }
 
@@ -143,10 +140,12 @@ void colorWipeBlack() {
 }
 
 void elevatorChaseRed() {
-  for(int dot = 0; dot < STRAND_LENGTH; dot+2) { 
+  for(int dot = leftBottom+rightBottom+frontBottom, dot < leftBottom+rightBottom+frontBottom+elevatorLeft; dot++) { 
             leds[dot].setRGB(128, 0, 0);
+            leds[dot+leftElevator].setRGB(128,0,0);
             FastLED.show();
         leds[dot] = CRGB::Black;
+        leds[dot+leftElevator] = CRGB::Black;
             FastLED.delay(wait);
   }
 }
