@@ -1,9 +1,3 @@
-/*
- * LED Animations (0-255, not that we'll need 255 Animations)
- * I'm going to organize the animations on the Google Sheet in the electrical folder,
- * but we'll just categorize based on what part of the robot it's lighting up. I'll add the .csv file to the GitHub once i'm done
- */
-
 //includes
 #include <Wire.h>
 #include <FastLED.h>
