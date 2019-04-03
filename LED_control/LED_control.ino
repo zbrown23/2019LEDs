@@ -34,10 +34,9 @@ void setup() {
 
 //just screw with stuff if you want lol
 void loop() {     
-      int rainFrequency = 8;
+      int rainFrequency = 32;
      for(int i = 0; i < rainFrequency; i++) {
-        coralRain(i,0,30,false,rainFrequency);
-        coralRain(i,31,50,true,rainFrequency);
+        coralRain(i,0,STRAND_LENGTH,false,rainFrequency);
         FastLED.show();
         FastLED.delay(wait);
      
@@ -96,13 +95,13 @@ void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFreque
 
 void CoralChaseBackForth() {
         for(int dot = 0; dot < STRAND_LENGTH; dot++) { 
-            leds[dot].setRGB( 250, 75, 90);
+            leds[dot].setRGB( 250, 75, 60);
             fadeToBlackBy(leds, STRAND_LENGTH, 300);
             FastLED.show();
             FastLED.delay(wait);
   }
         for(int dot = STRAND_LENGTH - 1; dot >= 0; dot--) {
-            leds[dot+0].setRGB( 250, 75, 90);
+            leds[dot+0].setRGB( 250, 75, 60);
             fadeToBlackBy(leds, STRAND_LENGTH, 300);
             FastLED.show();
             FastLED.delay(wait);
