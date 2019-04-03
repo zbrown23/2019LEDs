@@ -1,5 +1,5 @@
 //includes
-#include <Wire.h>
+// #include <Wire.h>
 #include <FastLED.h>
 
 //Changeable variables
@@ -23,9 +23,9 @@ CRGB leds[STRAND_LENGTH];
 
 void setup() {
   //setup code
-  Wire.begin(8);
-  Wire.onReceive(recieveEvent);
-  Serial.begin(9600);
+  // Wire.begin(8);
+  // Wire.onReceive(recieveEvent);
+  //Serial.begin(9600);
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, STRAND_LENGTH).setCorrection(TypicalLEDStrip);
   FastLED.setMaxPowerInVoltsAndMilliamps(5,6000); //not closed loop, but uses rgb values to calculate current, a little overshoot won't kill anyone
   FastLED.setBrightness(BRIGHTNESS);
@@ -33,17 +33,20 @@ void setup() {
 }
 
 //just screw with stuff if you want lol
-void loop() {
-     if(animation == 1){
-      int rainFrequency = 8;
+void loop() {     
+      /*int rainFrequency = 8;
      for(int i = 0; i < rainFrequency; i++) {
         coralRain(i,0,30,false,rainFrequency);
         coralRain(i,31,50,true,rainFrequency);
         FastLED.show();
         FastLED.delay(wait);
+     
+
      }
+     */
+    CoralChaseBackForth();
      }
-}
+
 
 void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFrequency) {
   int totalLEDs = endIndex-startIndex;
@@ -154,7 +157,7 @@ void pulseRed() {
 
  }
 
-void recieveEvent(int recieveByte){
-  animation = Wire.read();
-  Serial.println(animation);
-}
+// void recieveEvent(int recieveByte){
+//   animation = Wire.read();
+//   Serial.println(animation);
+// }
