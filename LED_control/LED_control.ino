@@ -16,8 +16,8 @@ const int leftElevator = 48;
 const int rightElevator = 48;
 
 //definitions so the code knows what it's doing
-#define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
-//#define STRAND_LENGTH 30  //test strand length
+//#define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
+#define STRAND_LENGTH 122  //test strand length
 int brightness = BRIGHTNESS;
 CRGB leds[STRAND_LENGTH];
 
@@ -34,7 +34,7 @@ void setup() {
 
 //just screw with stuff if you want lol
 void loop() {     
-      /*int rainFrequency = 8;
+      int rainFrequency = 8;
      for(int i = 0; i < rainFrequency; i++) {
         coralRain(i,0,30,false,rainFrequency);
         coralRain(i,31,50,true,rainFrequency);
@@ -43,8 +43,7 @@ void loop() {
      
 
      }
-     */
-    CoralChaseBackForth();
+     
      }
 
 
