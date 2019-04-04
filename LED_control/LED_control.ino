@@ -63,13 +63,13 @@ void loop() {
 void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFrequency) {
   int totalLEDs = endIndex-startIndex;
   if(reverse) {
-      for(int b = 0; b < totalLEDs/rainFrequency; b++) {
+      for(int b = 0; b <= totalLEDs/rainFrequency; b++) {
         leds[((rainFrequency-i-1) + b*rainFrequency)+startIndex].setRGB( 250, 75, 36);//250, 75, 90
       }
     }
 
   else {
-      for(int b = 0; b < totalLEDs/rainFrequency; b++) {
+      for(int b = 0; b <= totalLEDs/rainFrequency; b++) {
         leds[(i + b*rainFrequency)+startIndex].setRGB( 250, 75, 35);
       }
     }
