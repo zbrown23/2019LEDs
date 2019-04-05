@@ -52,6 +52,10 @@ void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFreque
     }
 }
 
+
+// unused animations
+//these all work, but aren't currently implemented
+
 void CoralChaseBackForth() {
         for(int dot = 0; dot < STRAND_LENGTH; dot++) { 
             leds[dot].setRGB( 250, 75, 60);
