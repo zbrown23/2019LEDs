@@ -9,25 +9,17 @@
 int fadeAmount = 5;
 int wait = 50;
 int animation = 0;
-const int leftBottom = 37;
-const int rightBottom = 37;
-const int frontBottom = 40;
-const int leftElevator = 48;
-const int rightElevator = 48;
+const int leftElevator = 61;
+const int rightElevator = 61;
 
 //definitions so the code knows what it's doing
-//#define STRAND_LENGTH leftBottom+rightBottom+frontBottom+leftElevator+rightElevator
-#define STRAND_LENGTH 122  //test strand length
+#define STRAND_LENGTH leftElevator+rightElevator;
 int brightness = BRIGHTNESS;
 CRGB leds[STRAND_LENGTH];
 
-void setup() {
-  //setup code
-  // Wire.begin(8);
-  // Wire.onReceive(recieveEvent);
-  //Serial.begin(9600);
+void setup() { //setup code
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, STRAND_LENGTH).setCorrection(TypicalLEDStrip);
-  FastLED.setMaxPowerInVoltsAndMilliamps(5,6000); //not closed loop, but uses rgb values to calculate current, a little overshoot won't kill anyone
+  FastLED.setMaxPowerInVoltsAndMilliamps(5,6000); //not closed loop, but uses rgb values to calculate current, a little overshoot won't kill anyone hopefully
   FastLED.setBrightness(BRIGHTNESS);
   FastLED.show();
 }
@@ -35,30 +27,16 @@ void setup() {
 //just screw with stuff if you want lol
 void loop() {     
       int rainFrequency = 16;
-     for(int i = 0; i < rainFrequency; i++) {
-      //ACTUAL
+     for(int i = 0; i < rainFrequency; i++){
         coralRain(i,0,STRAND_LENGTH/2,false,rainFrequency);
         coralRain(i,STRAND_LENGTH/2,STRAND_LENGTH,true,rainFrequency);
-
-       //TEST
-       //coralRain(i,0,STRAND_LENGTH/2,false,rainFrequency);
        fadeToBlackBy(leds, STRAND_LENGTH, 64);
         FastLED.show();
         FastLED.delay(wait);
-     
 
      }
      
      }
-  //}
-  //rainFrequency = 4
-  //{0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9}
-  //{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0}
-  //{0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0}
-  //{0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0}
-  //{0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0}
-  //{0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}
-  //{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0}
 
 void coralRain(int i, int startIndex, int endIndex, bool reverse, int rainFrequency) {
   int totalLEDs = endIndex-startIndex;
@@ -136,8 +114,3 @@ void elevatorChaseRed() {
 void pulseRed() {
 
  }
-
-// void recieveEvent(int recieveByte){
-//   animation = Wire.read();
-//   Serial.println(animation);
-// }
