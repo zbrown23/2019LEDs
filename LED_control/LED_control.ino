@@ -1,5 +1,4 @@
 //includes
-// #include <Wire.h>
 #include <FastLED.h>
 
 //Changeable variables
